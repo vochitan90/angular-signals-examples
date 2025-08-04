@@ -2,12 +2,13 @@ import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { resource } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { JsonPipe } from '@angular/common';
 interface ResourceData {
-    id: number;
+    id: any;
     title: string;
     completed: boolean;
 }
-function fetchResourceApi(limit = 10, isCompleted: boolean): Promise<ResourceData[] | null> {
+function fetchResourceApi(limit: number, isCompleted: boolean): Promise<ResourceData[] | null> {
     return fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}&completed=${isCompleted}`)
         .then((response) => response.json())
         .catch(() => []);
@@ -21,9 +22,10 @@ function fetchResourceApi(limit = 10, isCompleted: boolean): Promise<ResourceDat
 //     state(): 'loading' | 'success' | 'error';
 //     latest(): ResourceState<T>;
 // }
+
 @Component({
     selector: 'app-resource-api-example1',
-    imports: [MatButtonModule, MatCheckboxModule],
+    imports: [MatButtonModule, MatCheckboxModule, JsonPipe],
     template: `
         <h2>Resource API Example 1: Basic Fetch (resource)</h2>
         <button mat-button color="primary" (click)="resourceSignal.reload()">Refresh</button><br />
@@ -34,11 +36,11 @@ function fetchResourceApi(limit = 10, isCompleted: boolean): Promise<ResourceDat
         } @else if (resourceSignal.error()) {
             <div>Error: {{ resourceSignal.error() }}</div>
         } @else {
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Task</th>
+                        <th>Id</th>
+                        <th>Title</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -56,10 +58,18 @@ function fetchResourceApi(limit = 10, isCompleted: boolean): Promise<ResourceDat
                 </tbody>
             </table>
         }
+    `,
+    styles: `
+        .table,
+        .table tr,
+        table tr td {
+            border: 1px solid red;
+            padding: 5px;
+        }
     `
 })
 export class ResourceApiExample1Component {
-    limit = signal(20);
+    limit = signal(10);
     isCompleted = signal(false);
     resourceSignal = resource({
         params: () => [this.limit(), this.isCompleted()],
