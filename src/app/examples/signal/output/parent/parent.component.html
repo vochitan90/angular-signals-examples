@@ -1,0 +1,18 @@
+<h1>Todo List</h1>
+
+<mat-form-field>
+  <mat-label>Add Todo</mat-label>
+  <input
+    #todoInput
+    matInput
+    type="text"
+    placeholder="Add a todo"
+    (keyup.enter)="addTodo(todoInput.value); todoInput.value = ''"
+  />
+</mat-form-field>
+
+<ul>
+  @for (todo of todos(); track todo) {
+  <app-child [todo]="todo" (delete)="removeTodo($event)"></app-child>
+  }
+</ul>

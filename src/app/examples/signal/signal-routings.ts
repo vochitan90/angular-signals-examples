@@ -12,6 +12,13 @@ const ROUTES: Route[] = [
         redirectTo: 'signal-example1',
       },
       {
+        path: 'output',
+        loadChildren: () =>
+          import('./output/parent/parent-routing.module').then(
+            (m) => m.ParentRoutingModule
+          ),
+      },
+      {
         path: 'signal-example1',
         loadComponent: () =>
           import('./signal-example1/signal-example1.component'),
@@ -78,15 +85,20 @@ const ROUTES: Route[] = [
       },
       {
         path: 'signal-example14',
-        loadComponent: () => import('./signal-example14/signal-example14.component'),
+        loadComponent: () =>
+          import('./signal-example14/signal-example14.component'),
       },
       {
         path: 'signal-example15',
-        loadComponent: () => import('./signal-example15/signal-example15.component'),
+        loadComponent: () =>
+          import('./signal-example15/signal-example15.component'),
       },
       {
         path: 'signal-example16',
-        loadComponent: () => import('./signal-example16/signal-example16.component'),
+        loadComponent: () =>
+          import(
+            './signal-example15/signal-example16/signal-example16.component'
+          ),
       },
     ],
   },

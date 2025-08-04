@@ -1,5 +1,12 @@
 import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,19 +14,18 @@ import { MatInputModule } from '@angular/material/input';
 import { products } from './products';
 
 @Component({
-    selector: 'app-signal-example10',
-    templateUrl: './signal-example10.component.html',
-    styleUrl: './signal-example10.component.scss',
-    imports: [
-       
-        NgFor,
-        FormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        CurrencyPipe
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-signal-example10',
+  templateUrl: './signal-example10.component.html',
+  styleUrl: './signal-example10.component.scss',
+  imports: [
+    NgFor,
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    CurrencyPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignalExample10Component {
   readonly firstPage = 1;
@@ -28,16 +34,29 @@ export default class SignalExample10Component {
   searchInput = signal('');
   currentPage = signal(this.firstPage);
   isNextPageNotAvailable = computed(() => {
-    const fitlerProducts = products
-      .filter((product) =>
-        product.title.toLowerCase().includes(this.searchInput().toLowerCase())
-      )
-    return fitlerProducts.length < (this.currentPage()+1) * this.itemsPerPage;
+    const fitlerProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(this.searchInput().toLowerCase())
+    );
+    return fitlerProducts.length < (this.currentPage() + 1) * this.itemsPerPage;
   });
 
   filteredProducts = computed(() => {
     const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
+    console.log(
+      products.filter((product) =>
+        product.title.toLowerCase().includes(this.searchInput().toLowerCase())
+      )
+    );
+
+    console.log(
+      'sliced',
+      products
+        .filter((product) =>
+          product.title.toLowerCase().includes(this.searchInput().toLowerCase())
+        )
+        .slice(startIndex, endIndex)
+    );
     return products
       .filter((product) =>
         product.title.toLowerCase().includes(this.searchInput().toLowerCase())
@@ -61,5 +80,4 @@ export default class SignalExample10Component {
       Math.min(currentPage + 1, this.itemsPerPage + 1)
     );
   }
-
 }

@@ -2,6 +2,11 @@ import { ExampleModel } from '../models/example.model';
 
 export const EXAMPLES: ExampleModel[] = [
   {
+    title: 'output',
+    content: 'output',
+    routerLink: '/signal/output',
+  },
+  {
     title: 'Example 1',
     content: 'Count Increment/Decrement',
     routerLink: '/signal/signal-example1',

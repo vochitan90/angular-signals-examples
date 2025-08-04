@@ -7,7 +7,7 @@ import { interval, take } from 'rxjs';
   standalone: true,
   templateUrl: './signal-example7.component.html',
   styleUrl: './signal-example7.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignalExample5Component {
   counter$ = interval(1000);
