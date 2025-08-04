@@ -1,11 +1,12 @@
 import { Component, linkedSignal, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
 @Component({
     selector: 'app-ls-example3',
-    imports: [MatSelectModule, MatFormFieldModule, MatInputModule],
+    imports: [MatSelectModule, MatFormFieldModule, MatInputModule, MatButtonModule],
     templateUrl: './ls-example3.component.html',
     styleUrl: './ls-example3.component.scss'
 })
@@ -18,13 +19,12 @@ export class LsExample3Component {
 
     productId = signal('p001');
     userType = signal<'regular' | 'premium'>('regular');
+    signalTest = signal(true);
 
-    price = linkedSignal<[string, 'regular' | 'premium'], number>({
-        source: () => [this.productId(), this.userType()],
-        computation: (source, prev) => {
-            const [id, type] = source;
-            return this.getPriceFromRules(id, type);
-        }
+    price = linkedSignal(() => {
+        const id = this.productId();
+        const type = this.userType();
+        return this.getPriceFromRules(id, type);
     });
 
     private getPriceFromRules(productId: string, userType: string): number {
@@ -57,5 +57,10 @@ export class LsExample3Component {
         const input = event.target as HTMLInputElement;
         console.log(input);
         this.price.set(+input.value);
+    }
+
+    toggle(): void {
+        this.signalTest.set(!this.signalTest());
+        console.log(this.signalTest());
     }
 }

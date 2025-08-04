@@ -26,3 +26,7 @@
     <mat-label>Custom Price</mat-label>
     <input matInput placeholder="Custom Price" type="number" [value]="price()" (input)="updateCustomPrice($event)" />
 </mat-form-field>
+
+<h3>Outside linkedSignal</h3>
+<button mat-button color="primary" (click)="toggle()">Toggle</button>
+{{ signalTest() }}

@@ -38,4 +38,22 @@
             </a>
         }
     </div>
+
+    <div class="w-full">
+        <h2 class="text-2xl font-bold m-r-4">Resource Signal Examples</h2>
+        @for (item of resourceApiExamples(); track item) {
+            <a class="item" [routerLink]="item.routerLink">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{ item.title }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            {{ item.content }}
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </a>
+        }
+    </div>
 </div>
