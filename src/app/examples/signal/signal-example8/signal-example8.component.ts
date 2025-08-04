@@ -9,11 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample8Component {
-  count = signal(1000);
+    count = signal(1000);
 
-  countEffect = effect(() => console.log(this.count()));
+    countEffect = effect(() => console.log(this.count()));
 
-  updateCount() {
-    this.count.update((count) => count + 1);
-  }
+    updateCount() {
+        this.count.update((count) => count + 1);
+    }
 }

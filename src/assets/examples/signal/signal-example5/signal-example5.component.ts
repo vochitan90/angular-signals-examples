@@ -9,30 +9,25 @@ import { MatInputModule } from '@angular/material/input';
     selector: 'app-signal-example5',
     templateUrl: './signal-example5.component.html',
     styleUrl: './signal-example5.component.scss',
-    imports: [
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-    ],
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample5Component {
-  todoName = '';
-  todos: WritableSignal<string[]> = signal([]);
+    todoName = '';
+    todos: WritableSignal<string[]> = signal([]);
 
-  addTodo(todo: HTMLInputElement): void {
-    const item = todo.value;
-    this.updateTodos(item);
-    this.resetAndFocus(todo);
-  }
+    addTodo(todo: HTMLInputElement): void {
+        const item = todo.value;
+        this.updateTodos(item);
+        this.resetAndFocus(todo);
+    }
 
-  updateTodos(todo: string){
-    this.todos.update((todos) => [todo, ...todos]);
-  }
+    updateTodos(todo: string) {
+        this.todos.update((todos) => [todo, ...todos]);
+    }
 
-  resetAndFocus(todo: HTMLInputElement){
-    todo.value = '';
-    todo.focus();
-  }
+    resetAndFocus(todo: HTMLInputElement) {
+        todo.value = '';
+        todo.focus();
+    }
 }

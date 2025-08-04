@@ -10,56 +10,42 @@ import { products } from './products';
     selector: 'app-signal-example10',
     templateUrl: './signal-example10.component.html',
     styleUrl: './signal-example10.component.scss',
-    imports: [
-       
-        NgFor,
-        FormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        CurrencyPipe
-    ],
+    imports: [NgFor, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, CurrencyPipe],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample10Component {
-  readonly firstPage = 1;
-  itemsPerPage = 5;
+    readonly firstPage = 1;
+    itemsPerPage = 5;
 
-  searchInput = signal('');
-  currentPage = signal(this.firstPage);
-  isNextPageNotAvailable = computed(() => {
-    const fitlerProducts = products
-      .filter((product) =>
-        product.title.toLowerCase().includes(this.searchInput().toLowerCase())
-      )
-    return fitlerProducts.length < (this.currentPage()+1) * this.itemsPerPage;
-  });
+    searchInput = signal('');
+    currentPage = signal(this.firstPage);
+    isNextPageNotAvailable = computed(() => {
+        const fitlerProducts = products.filter((product) =>
+            product.title.toLowerCase().includes(this.searchInput().toLowerCase())
+        );
+        return fitlerProducts.length < (this.currentPage() + 1) * this.itemsPerPage;
+    });
 
-  filteredProducts = computed(() => {
-    const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return products
-      .filter((product) =>
-        product.title.toLowerCase().includes(this.searchInput().toLowerCase())
-      )
-      .slice(startIndex, endIndex);
-  });
+    filteredProducts = computed(() => {
+        const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        return products
+            .filter((product) => product.title.toLowerCase().includes(this.searchInput().toLowerCase()))
+            .slice(startIndex, endIndex);
+    });
 
-  searchProduct(searchText: string): void {
-    this.searchInput.set(searchText);
-    if (this.currentPage() > this.firstPage) {
-      this.currentPage.set(this.firstPage);
+    searchProduct(searchText: string): void {
+        this.searchInput.set(searchText);
+        if (this.currentPage() > this.firstPage) {
+            this.currentPage.set(this.firstPage);
+        }
     }
-  }
 
-  goToPrevPage(): void {
-    this.currentPage.update((currentPage) => Math.max(currentPage - 1, 1));
-  }
+    goToPrevPage(): void {
+        this.currentPage.update((currentPage) => Math.max(currentPage - 1, 1));
+    }
 
-  goToNextPage(): void {
-    this.currentPage.update((currentPage) =>
-      Math.min(currentPage + 1, this.itemsPerPage + 1)
-    );
-  }
-
+    goToNextPage(): void {
+        this.currentPage.update((currentPage) => Math.min(currentPage + 1, this.itemsPerPage + 1));
+    }
 }

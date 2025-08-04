@@ -10,18 +10,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     imports: [MatButtonModule, MatProgressSpinnerModule, NgIf],
     styles: [
         `
-      button.loading {
-        background: #f14e4e;
-      }
-      .loader-area{
-        margin-top: 20px;
-      }
-    `,
+            button.loading {
+                background: #f14e4e;
+            }
+            .loader-area {
+                margin-top: 20px;
+            }
+        `
     ]
 })
 export default class SignalExample15Component {
-  loading = signal(false);
-  toggleLoader() {
-    this.loading.update((state) => !state);
-  }
+    loading = signal(false);
+    toggleLoader() {
+        this.loading.update((state) => !state);
+    }
 }

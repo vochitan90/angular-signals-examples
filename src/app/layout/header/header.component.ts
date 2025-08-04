@@ -8,14 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
     selector: 'app-header',
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatMenuModule,
-    ],
+    imports: [CommonModule, RouterModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })

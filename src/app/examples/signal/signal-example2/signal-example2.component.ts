@@ -11,9 +11,9 @@ import { MarkdownComponent } from 'ngx-markdown';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample2Component {
-  count = signal(0);
+    count = signal(0);
 
-  constructor() {
-    setInterval(() => this.count.set(this.count() + 1), 1000);
-  }
+    constructor() {
+        setInterval(() => this.count.set(this.count() + 1), 1000);
+    }
 }

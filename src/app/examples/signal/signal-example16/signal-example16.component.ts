@@ -10,22 +10,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     imports: [MatButtonModule],
     styles: [
         `
-      button.loading {
-        background: #f14e4e;
-      }
-      .loader-area{
-        margin-top: 20px;
-      }
-    `,
+            button.loading {
+                background: #f14e4e;
+            }
+            .loader-area {
+                margin-top: 20px;
+            }
+        `
     ]
 })
 export default class SignalExample16Component {
-  name = signal('Sonu');
+    name = signal('Son');
 
-  readOnlyName = this.name.asReadonly();
+    readOnlyName = this.name.asReadonly();
 
-  updateName(updatedName: string) {
-    this.name.set(updatedName);
-  }
-  
+    updateName(updatedName: string) {
+        this.name.set(updatedName);
+    }
 }

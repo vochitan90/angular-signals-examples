@@ -10,9 +10,9 @@ import { InputSignalComponent } from './input-signal-title.component';
     imports: [MatFormFieldModule, MatInputModule, InputSignalComponent]
 })
 export default class SignalExample11Component {
-  searchInput = signal('');
+    searchInput = signal('');
 
-  searchProduct(searchText: string): void {
-    this.searchInput.set(searchText);
-  }
+    searchProduct(searchText: string): void {
+        this.searchInput.set(searchText);
+    }
 }

@@ -9,47 +9,40 @@ import { MatInputModule } from '@angular/material/input';
     selector: 'app-signal-example9',
     templateUrl: './signal-example9.component.html',
     styleUrl: './signal-example9.component.scss',
-    imports: [
-       
-        NgFor,
-        FormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-    ],
+    imports: [NgFor, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample9Component {
-  price = signal<number>(0);
-  vatInPercent = signal<number>(10);
+    price = signal<number>(0);
+    vatInPercent = signal<number>(10);
 
-  totalVat = computed<number>(() => this.price() * (this.vatInPercent() / 100));
-  total = computed<number>(() => this.price() + this.totalVat());
+    totalVat = computed<number>(() => this.price() * (this.vatInPercent() / 100));
+    total = computed<number>(() => this.price() + this.totalVat());
 
-  // listing
-  listing = signal<any[]>([]);
+    // listing
+    listing = signal<any[]>([]);
 
-  onInputUpdate(event: Event): void {
-    const newValue = +(event.target as HTMLInputElement).value;
-    this.price.set(newValue);
-  }
+    onInputUpdate(event: Event): void {
+        const newValue = +(event.target as HTMLInputElement).value;
+        this.price.set(newValue);
+    }
 
-  onInputVat(event: Event): void {
-    const newValue = +(event.target as HTMLInputElement).value;
-    this.vatInPercent.set(newValue);
-  }
+    onInputVat(event: Event): void {
+        const newValue = +(event.target as HTMLInputElement).value;
+        this.vatInPercent.set(newValue);
+    }
 
-  save(): void {
-    if (this.price() <= 0) return;
+    save(): void {
+        if (this.price() <= 0) return;
 
-    this.listing.update((history: any[]) => {
-      const item = {
-        price: this.price(),
-        vatPercent: this.vatInPercent(),
-        vat: this.totalVat(),
-        total: this.total(),
-      };
-      return [...history, item];
-    });
-  }
+        this.listing.update((history: any[]) => {
+            const item = {
+                price: this.price(),
+                vatPercent: this.vatInPercent(),
+                vat: this.totalVat(),
+                total: this.total()
+            };
+            return [...history, item];
+        });
+    }
 }

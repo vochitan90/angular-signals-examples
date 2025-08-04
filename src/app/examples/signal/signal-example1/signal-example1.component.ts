@@ -13,13 +13,13 @@ import { MarkdownComponent } from 'ngx-markdown';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample1Component {
-  count = signal<number>(1);
+    count = signal<number>(1);
 
-  increaseCount() {
-    this.count.update((count) => count + 1);
-  }
+    increaseCount() {
+        this.count.update((count) => count + 1);
+    }
 
-  decreaseCount() {
-    this.count.update((count) => count - 1);
-  }
+    decreaseCount() {
+        this.count.update((count) => count - 1);
+    }
 }
