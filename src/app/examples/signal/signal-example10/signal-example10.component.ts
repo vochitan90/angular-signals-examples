@@ -10,7 +10,7 @@ import { products } from './products';
     selector: 'app-signal-example10',
     templateUrl: './signal-example10.component.html',
     styleUrl: './signal-example10.component.scss',
-    imports: [NgFor, FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, CurrencyPipe],
+    imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, CurrencyPipe],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SignalExample10Component {

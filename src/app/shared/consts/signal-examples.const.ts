@@ -2,9 +2,9 @@ import { ExampleModel } from '../models/example.model';
 
 export const EXAMPLES: ExampleModel[] = [
     {
-        title: 'output',
-        content: 'output',
-        routerLink: '/signal/output'
+        title: 'Example 0',
+        content: 'Input and Output',
+        routerLink: '/signal/signal-example0'
     },
     {
         title: 'Example 1',

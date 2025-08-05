@@ -12,8 +12,9 @@ const ROUTES: Route[] = [
                 redirectTo: 'signal-example1'
             },
             {
-                path: 'output',
-                loadChildren: () => import('./output/parent/parent-routing.module').then((m) => m.ParentRoutingModule)
+                path: 'signal-example0',
+                loadChildren: () =>
+                    import('./signal-example0/parent/parent-routing.module').then((m) => m.ParentRoutingModule)
             },
             {
                 path: 'signal-example1',

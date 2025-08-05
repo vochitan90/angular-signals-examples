@@ -25,7 +25,7 @@ function fetchResourceApi(limit: number, isCompleted: boolean): Promise<Resource
 
 @Component({
     selector: 'app-resource-api-example1',
-    imports: [MatButtonModule, MatCheckboxModule, JsonPipe],
+    imports: [MatButtonModule, MatCheckboxModule],
     template: `
         <h2>Resource API Example 1: Basic Fetch (resource)</h2>
         <button mat-button color="primary" (click)="resourceSignal.reload()">Refresh</button><br />
